@@ -27,13 +27,22 @@ public class EmployeeService {
 
     public String addEmployee(Employee employee) {
         empRepo.save(employee);
-        return "Employee Added Successfully!!!";
+        return "Employee Added by Admin!";
     }
 
     public String updateEmployee(Employee employee) {
         empRepo.save(employee);
         return "Employee Updated Successfully!!!";
     }
+
+//    public String updateEmployeeById(int empID, Employee employee) {
+//        Employee emp = empRepo.findByEmpID(empID);
+//        emp.setName(employee.getName());
+//        emp.setJob(employee.getJob());
+//
+//        empRepo.save(emp);
+//        return "Employee Updated by ID";
+//    }
 
     public String deleteEmployeeById(int empID) {
         empRepo.deleteById(empID);

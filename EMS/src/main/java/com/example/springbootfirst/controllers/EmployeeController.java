@@ -26,6 +26,7 @@ public class EmployeeController {
         return employeeService.getMethod();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/employee/{empID}")
     public Employee getEmployeeById(@PathVariable int empID){
         return employeeService.getEmployeeById(empID);
@@ -36,15 +37,21 @@ public class EmployeeController {
         return employeeService.getEmployeeByJob(job);
     }
 
-    @PostMapping("/employee")
-    public String postMethod(@RequestBody Employee employee){
-//        Employee employee = new Employee(5,"Sivagami", "Business");
-        return employeeService.addEmployee(employee);
-    }
+//    @PostMapping("/employee")
+//    public String postMethod(@RequestBody Employee employee){
+////        Employee employee = new Employee(5,"Sivagami", "Business");
+//        return employeeService.addEmployee(employee);
+//    }
     @PutMapping("/employee")
     public String putMethod(@RequestBody Employee employee){
         return employeeService.updateEmployee(employee);
     }
+
+//    @PutMapping("/employee/{empID}")
+//    public String putMethod(@PathVariable int empID, @RequestBody Employee e){
+//        return employeeService.updateEmployeeById(empID,e);
+//    }
+
     @DeleteMapping("/employee/{empID}")
     public String deleteMethod(@PathVariable int empID){
         return employeeService.deleteEmployeeById(empID);

@@ -14,6 +14,7 @@ public class UserDetailsDto {
   private String userName;
   private String email;
   private String password;
+  private Set<String> roleNames;
 
   public String getName() {
     return name;
@@ -55,5 +56,4 @@ public class UserDetailsDto {
     this.roleNames = roleNames;
   }
 
-  private Set<String> roleNames;
 }

@@ -1,5 +1,6 @@
 package com.example.springbootfirst.models;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
