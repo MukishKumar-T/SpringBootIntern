@@ -35,14 +35,14 @@ public class EmployeeService {
         return "Employee Updated Successfully!!!";
     }
 
-//    public String updateEmployeeById(int empID, Employee employee) {
-//        Employee emp = empRepo.findByEmpID(empID);
-//        emp.setName(employee.getName());
-//        emp.setJob(employee.getJob());
-//
-//        empRepo.save(emp);
-//        return "Employee Updated by ID";
-//    }
+    public String updateEmployeeById(int empID, Employee employee) {
+        Employee emp = empRepo.findByEmpID(empID);
+        emp.setName(employee.getName());
+        emp.setJob(employee.getJob());
+
+        empRepo.save(emp);
+        return "Employee Updated by ID";
+    }
 
     public String deleteEmployeeById(int empID) {
         empRepo.deleteById(empID);

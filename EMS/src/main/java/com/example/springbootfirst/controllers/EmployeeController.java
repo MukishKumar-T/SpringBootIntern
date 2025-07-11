@@ -47,10 +47,10 @@ public class EmployeeController {
         return employeeService.updateEmployee(employee);
     }
 
-//    @PutMapping("/employee/{empID}")
-//    public String putMethod(@PathVariable int empID, @RequestBody Employee e){
-//        return employeeService.updateEmployeeById(empID,e);
-//    }
+    @PutMapping("/employee/{empID}")
+    public String putMethod(@PathVariable int empID, @RequestBody Employee e){
+        return employeeService.updateEmployeeById(empID,e);
+    }
 
     @DeleteMapping("/employee/{empID}")
     public String deleteMethod(@PathVariable int empID){
