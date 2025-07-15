@@ -2,7 +2,6 @@ package com.example.springbootfirst.services;
 
 import com.example.springbootfirst.models.Employee;
 import com.example.springbootfirst.repository.EmployeeRepository;
-import com.example.springbootfirst.repository.RolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +9,8 @@ import java.util.List;
 
 @Service
 public class EmployeeService {
-
     @Autowired
-    private EmployeeRepository empRepo;
-
-    @Autowired
-    private RolesRepository rolesRepository;
+    EmployeeRepository empRepo;
 
     public List<Employee> getMethod() {
         return empRepo.findAll();
@@ -25,13 +20,14 @@ public class EmployeeService {
         return empRepo.findById(empID).orElse(new Employee());
     }
 
+
     public List<Employee> getEmployeeByJob(String job) {
         return empRepo.findByJob(job);
     }
 
     public String addEmployee(Employee employee) {
         empRepo.save(employee);
-        return "Employee Added Successfully!!!";
+        return "Employee Added by Admin!";
     }
 
     public String updateEmployee(Employee employee) {
@@ -39,14 +35,13 @@ public class EmployeeService {
         return "Employee Updated Successfully!!!";
     }
 
-    public String updateEmployeeById(int id, Employee updated) {
-        Employee existing = empRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Employee not found with ID: " + id));
-        existing.setName(updated.getName());
-        existing.setJob(updated.getJob());
-        // ✅ Removed email
-        empRepo.save(existing);
-        return "Employee with ID " + id + " updated successfully.";
+    public String updateEmployeeById(int empID, Employee employee) {
+        Employee emp = empRepo.findByEmpID(empID);
+        emp.setName(employee.getName());
+        emp.setJob(employee.getJob());
+
+        empRepo.save(emp);
+        return "Employee Updated by ID";
     }
 
     public String deleteEmployeeById(int empID) {
