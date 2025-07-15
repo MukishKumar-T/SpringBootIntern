@@ -18,37 +18,37 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 public class SpringConfiguration {
 
-//  @Autowired
-//  CustomUserDetailsService customUserDetailsService;
-//
-//  @Autowired
-//  JwtAuthenticationFilter jwtAuthenticationFilter;
-//
-//
-//  @Bean
-//  public PasswordEncoder passwordEncoder(){
-//    return new BCryptPasswordEncoder();
-//  }
-//
-//  @Bean
-//  SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//    http
-//            .csrf((csrf)->csrf.disable())
-//            .authorizeHttpRequests(auth-> {
-//              auth.requestMatchers("/api/auth/**").permitAll();
-//              auth.anyRequest().authenticated();
-//            })
-//            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-//    return http.build();
-//  }
-//
-//  @Bean
-//  public AuthenticationManager authenticationManager(
-//          AuthenticationConfiguration configuration)
-//          throws Exception {
-//    return configuration.getAuthenticationManager();
-//
-//  }
+  @Autowired
+  CustomUserDetailsService customUserDetailsService;
+
+  @Autowired
+  JwtAuthenticationFilter jwtAuthenticationFilter;
+
+
+  @Bean
+  public PasswordEncoder passwordEncoder(){
+    return new BCryptPasswordEncoder();
+  }
+
+  @Bean
+  SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+            .csrf((csrf)->csrf.disable())
+            .authorizeHttpRequests(auth-> {
+              auth.requestMatchers("/api/auth/**").permitAll();
+              auth.anyRequest().authenticated();
+            })
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    return http.build();
+  }
+
+  @Bean
+  public AuthenticationManager authenticationManager(
+          AuthenticationConfiguration configuration)
+          throws Exception {
+    return configuration.getAuthenticationManager();
+
+  }
 
 
 }
