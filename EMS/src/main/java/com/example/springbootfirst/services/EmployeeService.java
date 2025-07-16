@@ -22,7 +22,7 @@ public class EmployeeService {
     }
 
     public Employee getEmployeeById(int empID) {
-        return empRepo.findById(empID).orElse(new Employee());
+        return empRepo.findByEmpID(empID);
     }
 
     public List<Employee> getEmployeeByJob(String job) {
