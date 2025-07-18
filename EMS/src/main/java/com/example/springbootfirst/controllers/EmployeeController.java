@@ -26,6 +26,15 @@ public class EmployeeController {
         return employeeService.getMethod();
     }
 
+    @GetMapping("/employees")
+    public List<Employee> searchEmployees(@RequestParam(value = "search", required = false) String search) {
+        if (search == null || search.isEmpty()) {
+            return employeeService.getMethod();
+        } else {
+            return employeeService.searchByIdOrName(search);
+        }
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/employee/{empID}")
     public Employee getEmployeeById(@PathVariable int empID){
@@ -37,11 +46,11 @@ public class EmployeeController {
         return employeeService.getEmployeeByJob(job);
     }
 
-//    @PostMapping("/employee")
-//    public String postMethod(@RequestBody Employee employee){
-////        Employee employee = new Employee(5,"Sivagami", "Business");
-//        return employeeService.addEmployee(employee);
-//    }
+    @PostMapping("/employee")
+    public String postMethod(@RequestBody Employee employee){
+        return employeeService.addEmployee(employee);
+    }
+
     @PutMapping("/employee")
     public String putMethod(@RequestBody Employee employee){
         return employeeService.updateEmployee(employee);

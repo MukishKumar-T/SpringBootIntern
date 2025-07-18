@@ -34,6 +34,17 @@ public class EmployeeService {
         return "Employee Added Successfully!!!";
     }
 
+    public List<Employee> searchByIdOrName(String search) {
+        try {
+            int empID = Integer.parseInt(search);
+            // If search is an integer, search by empID or name
+            return empRepo.findByEmpIDOrNameContainingIgnoreCase(empID, search);
+        } catch (NumberFormatException e) {
+            // If search is not an integer, search by name only
+            return empRepo.findByNameContainingIgnoreCase(search);
+        }
+    }
+
     public String updateEmployee(Employee employee) {
         empRepo.save(employee);
         return "Employee Updated Successfully!!!";
